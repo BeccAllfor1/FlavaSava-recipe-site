@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-zl$ti*i9ih$k^*49ntbh(_0vhnwk6b8&35992d5r&p6s7fbl73
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-beccallfor1-flavasavare-6f9qxe4oedo.ws.codeinstitute-ide.net',
+ALLOWED_HOSTS = ['8000-beccallfor1-flavasavare-o21zhbfs3mx.ws.codeinstitute-ide.net',
 '.herokuapp.com']
 
 
@@ -82,17 +82,18 @@ WSGI_APPLICATION = 'flavasava.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-# }
 DATABASES = {
-'default':
-dj_database_url.parse(os.environ.get("DATABASE_URL"))
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
+   }
 }
-SECRET_KEY = os.environ.get('SECRET_KEY')
+#DATABASES = {
+#'default':
+# dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# }
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
