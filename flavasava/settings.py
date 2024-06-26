@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-zl$ti*i9ih$k^*49ntbh(_0vhnwk6b8&35992d5r&p6s7fbl73
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-beccallfor1-flavasavare-6f9qxe4oedo.ws.codeinstitute-ide.net',
+ALLOWED_HOSTS = ['8000-beccallfor1-flavasavare-sqaxt1gwltl.ws.codeinstitute-ide.net',
 '.herokuapp.com']
 
 
