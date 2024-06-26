@@ -82,17 +82,25 @@ WSGI_APPLICATION = 'flavasava.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db.sqlite3',
-   }
-}
-#DATABASES = {
-#'default':
-# dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
 # }
-# SECRET_KEY = os.environ.get('SECRET_KEY')
+DATABASES = {
+'default':
+dj_database_url.parse(os.environ.get("DATABASE_URL"))
+
+}
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-beccallfor1-flavasavare-o21zhbfs3mx.ws.codeinstitute-ide.net",
+    "https://*.herokuapp.com"
+]
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 
 # Password validation
