@@ -1,4 +1,4 @@
-from recipe.views import my_recipe
+
 
 
 """
@@ -19,11 +19,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import path, include
+from recipe.views import my_recipe
 
 urlpatterns = [
+    path('accounts/', include("allauth.urls")),
     path('admin/', admin.site.urls),
-    path('recipe/', my_recipe, name='recipe'),
-    
-
+    path('', my_recipe, name='home'),  
    
 ]
