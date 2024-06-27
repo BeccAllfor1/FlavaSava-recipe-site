@@ -67,3 +67,82 @@ def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     reviews = recipe.reviews.all()
     avg_rating = reviews.aggregate(Avg('rating'))['rating__avg']
+
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.recipe = recipe
+            review.user = request.user
+            review.save()
+            messages.success(request, 'Your review has been added!')
+            return redirect('recipe_detail', recipe_id=recipe_id)
+    else:
+        form = ReviewForm()
+    
+    context = {
+        'recipe': recipe,
+        'reviews': reviews,
+        'avg_rating': avg_rating,
+        'form': form
+    }
+    return render(request, 'recipe_detail.html', context)
+
+    @login_required
+def create_recipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            recipe = form.save(commit=False)
+            recipe.created_by = request.user
+            recipe.save()
+            form.save_m2m()  # Save many-to-many data
+            messages.success(request, 'Your recipe has been created!')
+            return redirect('recipe_detail', recipe_id=recipe.id)
+    else:
+        form = RecipeForm()
+    return render(request, 'create_recipe.html', {'form': form})
+
+@login_required
+def edit_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id, created_by=request.user)
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your recipe has been updated!')
+            return redirect('recipe_detail', recipe_id=recipe.id)
+    else:
+        form = RecipeForm(instance=recipe)
+    return render(request, 'edit_recipe.html', {'form': form, 'recipe': recipe})
+
+@login_required
+def delete_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id, created_by=request.user)
+    if request.method == 'POST':
+        recipe.delete()
+        messages.success(request, 'Your recipe has been deleted!')
+        return redirect('recipe_list')
+    return render(request, 'delete_recipe.html', {'recipe': recipe})
+
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'category_list.html', {'categories': categories})
+
+def category_detail(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    recipes = category.recipes.all()
+    return render(request, 'category_detail.html', {'category': category, 'recipes': recipes})
+
+@login_required
+def create_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New category has been created!')
+            return redirect('category_list')
+    else:
+        form = CategoryForm()
+    return render(request, 'create_category.html', {'form': form})
