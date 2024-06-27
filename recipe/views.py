@@ -45,7 +45,7 @@ def create_profile(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-            messages.success(request, 'Your profile has been created!')
+            #messages.success(request, 'Your profile has been created!')
             return redirect('profile')
     else:
         form = ProfileForm()
