@@ -59,4 +59,11 @@ def edit_profile(request):
         if form.cleaned_data['category']:
             recipes = recipes.filter(categories=form.cleaned_data['category'])
         if form.cleaned_data['difficulty']:
-            recipes = recipes.filter(difficulty=form.cleaned_data['diffic
+            recipes = recipes.filter(difficulty=form.cleaned_data['difficulty'])
+
+    return render(request, 'recipe_list.html', {'recipes': recipes, 'form': form})
+
+def recipe_detail(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    reviews = recipe.reviews.all()
+    avg_rating = reviews.aggregate(Avg('rating'))['rating__avg']
