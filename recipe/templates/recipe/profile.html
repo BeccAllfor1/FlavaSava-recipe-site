@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile.user.username }}'s Profile - Recipe Sharing Site{% endblock %}
+
+{% block content %}
+    <h2>{{ profile.user.username }}'s Profile</h2>
+    {% if profile.image %}
+        <img src="{{ profile.image.url }}" alt="{{ profile.user.username }}">
+    {% endif %}
+    <p>Name: {{ profile.firstname }} {{ profile.surname }}</p>
+    <a href="{% url 'edit_profile' %}">Edit Profile</a>
+
+    <h3>My Recipes</h3>
+    <div class="recipe-grid">
+        {% for recipe in profile.user.recipes.all %}
+            <div class="recipe-card">
+                <h4>{{ recipe.title }}</h4>
+                {% if recipe.image %}
+                    <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                {% endif %}
+                <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
+            </div>
+        {% empty %}
+            <p>You haven't created any recipes yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
