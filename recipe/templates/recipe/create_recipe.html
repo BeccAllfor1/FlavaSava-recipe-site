@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Recipe - Recipe Sharing Site{% endblock %}
+
+{% block content %}
+    <h2>Create a New Recipe</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Recipe</button>
+    </form>
+{% endblock %}

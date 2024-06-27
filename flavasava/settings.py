@@ -72,7 +72,7 @@ ROOT_URLCONF = 'flavasava.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [os.path.join(BASE_DIR, 'recipe/templates/recipe')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
