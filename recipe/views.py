@@ -21,3 +21,42 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
+
+    @login_required
+def create_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request, 'Your profile has been created!')
+            return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'create_profile.html', {'form': form})
+
+    @login_required
+def edit_profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile has been updated!')
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'edit_profile.html', {'form': form})
+
+    def recipe_list(request):
+    form = RecipeSearchForm(request.GET)
+    recipes = Recipe.objects.all()
+
+    if form.is_valid():
+        if form.cleaned_data['search_query']:
+            recipes = recipes.filter(title__icontains=form.cleaned_data['search_query'])
+        if form.cleaned_data['category']:
+            recipes = recipes.filter(categories=form.cleaned_data['category'])
+        if form.cleaned_data['difficulty']:
+            recipes = recipes.filter(difficulty=form.cleaned_data['diffic
