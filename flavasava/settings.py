@@ -27,9 +27,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 SECRET_KEY = 'django-insecure-zl$ti*i9ih$k^*49ntbh(_0vhnwk6b8&35992d5r&p6s7fbl73'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['8000-beccallfor1-flavasavare-sqaxt1gwltl.ws.codeinstitute-ide.net',
+ALLOWED_HOSTS = ['8000-beccallfor1-flavasavare-6f9qxe4oedo.ws.codeinstitute-ide.net',
 '.herokuapp.com']
 
 
@@ -103,7 +103,7 @@ dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-beccallfor1-flavasavare-o21zhbfs3mx.ws.codeinstitute-ide.net",
+    "https://8000-beccallfor1-flavasavare-6f9qxe4oedo.ws.codeinstitute-ide.net",
     "https://*.herokuapp.com"
 ]
 
