@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.title }} - Recipe Sharing Site{% endblock %}
+
+{% block content %}
+    <h2>{{ recipe.title }}</h2>
+    {% if recipe.image %}
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+    {% endif %}
+    <p>By: {{ recipe.created_by.username }}</p>
+    <p>Difficulty: {{ recipe.get_difficulty_display }}</p>
+    <p>Cooking Time: {{ recipe.cooking_time }}</p>
+    <p>Serves: {{ recipe.serves }}</p>
+    
+    <h3>Ingredients</h3>
+    <p>{{ recipe.ingredients|linebreaks }}</p>
+    
+    <h3>Steps</h3>
+    <p>{{ recipe.steps|linebreaks }}</p>
+    
+    <h3>Reviews</h3>
+    <p>Average Rating: {{ avg_rating|default:"No ratings yet" }}</p>
+    {% for review in reviews %}
+        <div class="review">
+            <h4>{{ review.title }} - {{ review.rating }}/5</h4>
+            <p>By: {{ review.user.username }}</p>
+            <p>{{ review.body }}</p>
+        </div>
+    {% empty %}
+        <p>No reviews yet.</p>
+    {% endfor %}
+    
+    {% if user.is_authenticated %}
+        <h4>Add a Review</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
+    {% endif %}
+{% endblock %}
