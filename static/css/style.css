@@ -2,6 +2,9 @@ body {
     background-color: #F9FAFC;
 }
 
+p {
+    color:rgb(2, 2, 2);
+}
 
 .brand {
     font-family: Lato, sans-serif;

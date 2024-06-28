@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 
 
-{% block title %}Home - Recipe Sharing Site{% endblock %}
+{% block title %}Home - FlavaSava{% endblock %}
 
 {% block content %}
-    <h1>Welcome to Recipe Sharing Site</h1>
-    <h2>Latest Recipes</h2>
+<div class="container">  
+    <h1 style="color: orangered">Welcome to FlavaSava</h1>
+</div>
+<div class="container">
+    <h3 style="color: orangered">About</h3>
+        <p> Welcome to FlavaSava, where culinary creativity meets financial savvy! Our platform is 
+            dedicated to bringing together avid cooks and chefs of all abilities who share a passion for 
+            creating delicious, budget-friendly meals. Here, you'll find a treasure trove of recipes 
+            that prove you don't need to break the bank to enjoy gourmet flavors. Join our community 
+            to explore, share, and discover how to make every meal a masterpiece without compromising 
+            your wallet. Let's cook smart and eat well together!</p>
+</div>
+
+<div class="container">
+    <h4 style="color: orangered">Latest Recipes</h4>
     <div class="recipe-grid">
         {% for recipe in recipes %}
             <div class="recipe-card">
@@ -14,11 +27,12 @@
                     <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
                 {% endif %}
                 <p>By: {{ recipe.created_by.username }}</p>
-                <a href="{% url 'recipe_detail' recipe.id %}">View Recipe</a>
+                <a href="{% url 'recipe_detail' recipe.id %}">View Recipes</a>
             </div>
         {% empty %}
             <p>No recipes available yet.</p>
         {% endfor %}
     </div>
+</div>
 
 {% endblock %}

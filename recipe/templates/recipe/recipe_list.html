@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Recipes - Recipe Sharing Site{% endblock %}
+{% block title %}Recipes - FlavaSava{% endblock %}
 
 {% block content %}
     <h2>Recipes</h2>
@@ -11,7 +11,7 @@
     <div class="recipe-grid">
         {% for recipe in recipes %}
             <div class="recipe-card">
-                <h3>{{ recipe.title }}</h3>
+                <h5>{{ recipe.title }}</h5>
                 {% if recipe.image %}
                     <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
                 {% endif %}

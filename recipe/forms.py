@@ -1,28 +1,3 @@
-# from django import forms
-# from .models import Profile, Recipe, Category, Review 
-
-
-# class ProfileForm(forms.ModelForm):
-#     class Meta:
-#        models = Profile
-#        fields = ['firstname', 'surname', 'image']
-
-# class RecipeForm(forms.ModelForm):
-#     class Meta:
-#        models = Recipe
-#        fields = ['difficulty', 'ingredients', 'cooking_time', 'serves', 'steps', 'image']
-
-# class CategoryForm(forms.ModelForm):
-#     class Meta:
-#        models = Category
-#        fields = ['name', 'description']
-
-# class ReviewForm(forms.ModelForm):
-#     class Meta:
-#        models = Review
-#        fields = ['title', 'rating', 'body']
-        
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User

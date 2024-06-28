@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Register - Recipe Sharing Site{% endblock %}
+{% block title %}Register - FlavaSava{% endblock %}
 
 {% block content %}
-    <h2>Register</h2>
+    <h2 style="color: orangered">Register</h2>
+<div class="container">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Register</button>
+        <button class="btn btn-secondary" type="submit">Register</button>
     </form>
+</div>
 {% endblock %}

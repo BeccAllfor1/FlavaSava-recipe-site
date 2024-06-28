@@ -1,18 +1,3 @@
-# from django.shortcuts import render, get_object_or_404, redirect
-# from .models import Profile, Recipe, Category, Review 
-# from .forms import ProfileForm, RecipeForm, CategoryForm, RecipeForm
-# from django.http import HttpResponse
-# # Create your views here.
-
-# # def my_recipe(request):
-# #  return HttpResponse("Hello, flavasava!")
-
-# #@login_required
-# def recipe_list(request):
-#     recipes = Recipe.objects.filter(user=request.user)
-#     return render(request, 'base.html', {'recipes':recipes}) 
-
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -45,7 +30,6 @@ def create_profile(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-            #messages.success(request, 'Your profile has been created!')
             return redirect('profile')
     else:
         form = ProfileForm()
@@ -165,3 +149,4 @@ def create_category(request):
     else:
         form = CategoryForm()
     return render(request, 'create_category.html', {'form': form})
+

@@ -21,7 +21,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-#from recipe.views import my_recipe
 
 urlpatterns = [
     path('admin/', admin.site.urls),
