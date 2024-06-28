@@ -67,9 +67,11 @@ class Recipe(models.Model):
     cooking_time = models.DurationField()
     serves = models.PositiveIntegerField()
     steps = models.TextField()
-    image = models.ImageField(upload_to='recipes/', null=True, blank=True)
+    image = models.ImageField(upload_to='media/', null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
     created_at = models.DateTimeField(auto_now_add=True)
+    content = models.TextField(null=False)
+    featured_image = models.ImageField(null=False)
 
     def __str__(self):
         return self.title
